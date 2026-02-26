@@ -237,9 +237,8 @@ function update(){
 
     tValue.value = t.toFixed(3);
 
-    // FIXED VOID LOGIC
     let skyCan = vertical < 253;
-    let voidCan = vertical > 64;
+    let voidCan = vertical < 64;
 
     verticalCheck.innerHTML = `
         Sky Farlands: ${skyCan ? "<span class='good'>CAN generate</span>" : "<span class='warning'>CANNOT generate</span>"}<br>
@@ -317,5 +316,6 @@ update();
 
 </body>
 </html>
+
 
 
