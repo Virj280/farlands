@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://virj280.github.io/the-puchi-invasion/Linescript%20webfont%20kit/stylesheet.css" type="text/css" charset="utf-8" />
+<head>
+<meta charset="UTF-8">
+<title>Farlands Calculator</title>
+    <link rel="icon" href="https://virj280.github.io/farlands/farland-favicon.ico" type="image/x-icon">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body {
+    font-family: Linescript;
+    background:#0f0f0f;
+    color:#f0f0f0;
+    margin:0;
+    padding:30px;
+}
+.container {
+    max-width:1200px;
+    margin:auto;
+}
+h1,h2 { color:#4fc3f7; }
+.section {
+    background:#1a1a1a;
+    padding:20px;
+    margin:20px 0;
+    border-radius:10px;
+}
+.formula {
+    background:#111;
+    padding:12px;
+    font-family: monospace;
+    border-radius:6px;
+}
+.controls {
+    margin-top:15px;
+}
+input[type=range]{ width:60%; }
+input[type=number]{ width:100px; padding:5px; }
+select{ padding:5px; }
+canvas { background:white; border-radius:8px; }
+.tp-box { margin-top:15px; }
+button{
+    padding:8px 12px;
+    margin:5px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+.edge{background:#2b8cff;color:white;}
+.corner{background:#00b894;color:white;}
+input.command{
+    width:80%;
+    padding:8px;
+    border-radius:6px;
+    border:none;
+}
+.warning{color:#ff5252;font-weight:bold;}
+.good{color:#00e676;font-weight:bold;}
+a{color:#81d4fa;}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>Minecraft Farlands Calculator & Formula Guide</h1>
+
+<div class="section">
+<h2>Main Formula</h2>
+<div class="formula">d = 2^(n-1) / (171.103 × 80^b × a)</div>
+<p><b>b ≤ 0</b> (integer only)<br>b = 0 → Farlands<br>b = -1 → Farther Lands</p>
+<p><b>a > 0</b> (decimal allowed)<br>Lower a → farther generation<br>Higher a → closer generation</p>
+<p>t is the terrain coordinate scale (value to input ingame for horizontal/vertical t)</p>
+<div class="formula">t = 684.412a</div>
+<p>Higher t → jagged terrain<br>Lower t → flatter terrain</p>
+<p>Original Desmos graph: <a href="https://www.desmos.com/calculator/qvwnx0ph8f" target="_blank">View Here</a></p>
+</div>
+
+<div class="section">
+<h2>Interactive Controls</h2>
+<div class="controls">
+<label>a:</label>
+<input type="number" id="aInput" min="0.000000001" step="any" value="1">
+</div>
+
+<div class="controls">
+<label>b:</label>
+<input type="range" id="bSlider" min="-1" max="0" step="1" value="0">
+<span id="bVal">0</span>
+</div>
+
+<div class="controls">
+<label>n:</label>
+<select id="nSelect">
+<option value="32" selected>32-bit (old/modded)</option>
+<option value="64">64-bit (modern)</option>
+</select>
+</div>
+
+<div id="results"></div>
+<div id="verticalCheck"></div>
+
+<div class="tp-box">
+<h3>Teleport Command Generator</h3>
+
+<!-- Edge Farlands -->
+<p><b>Edge Farlands</b></p>
+<button class="edge" onclick="generateEdge()">Edge TP</button>
+<button class="corner" onclick="generateCorner()">Corner TP</button>
+<input class="command" id="tpHorizontal" readonly>
+<button class="copy-btn" onclick="copyCommand('tpHorizontal')">Copy</button>
+
+<br><br>
+
+<!-- Sky Farlands -->
+<p><b>Sky Farlands</b></p>
+<button class="edge" onclick="generateSky()">Sky TP</button>
+<input class="command" id="tpSky" readonly>
+<button class="copy-btn" onclick="copyCommand('tpSky')">Copy</button>
+
+<br><br>
+
+<!-- Void Farlands -->
+<p><b>Void Farlands</b></p>
+<button class="edge" onclick="generateVoid()">Void TP</button>
+<input class="command" id="tpVoid" readonly>
+<button class="copy-btn" onclick="copyCommand('tpVoid')">Copy</button>
+</div>
+
+<style>
+.copy-btn {
+    background-color: #ff5252; /* red */
+    color: white;
+    font-size: 0.85em;         /* slightly smaller font */
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.copy-btn:hover {
+    background-color: #ff3333;
+}
+</style>
+
+<script>
+function copyCommand(elementId){
+    const input = document.getElementById(elementId);
+    if(input.value){
+        navigator.clipboard.writeText(input.value)
+            .then(() => {
+                // Quick green border flash for feedback
+                input.style.border = "2px solid #00e676";
+                setTimeout(() => input.style.border = "", 500);
+            })
+            .catch(err => alert("Failed to copy: " + err));
+    } else {
+        alert("No command to copy.");
+    }
+}
+</script>
+
+<div class="section">
+<h2>Important Notes</h2>
+<p>Default Farlands (a=1, b=0, n=32): ≈ 12,550,824 blocks</p>
+<p>64-bit equivalent: ≈ 53.905 quadrillion blocks</p>
+<p>Because of extra zeros in the 64-bit value, 1–3 block variation becomes <b>1–3 billion block variation</b>.</p>
+<p>Noise maps break twice as far vertically: Vertical = 2d</p>
+<p>Sky Farlands require 2d < 253<br>Void Farlands require 2d > 64</p>
+</div>
+
+<div class="section">
+<h2>Distance Graph</h2>
+<canvas id="graph" height="400"></canvas>
+</div>
+
+</div>
+
+<script>
+const ctx = document.getElementById("graph").getContext("2d");
+const aInput = document.getElementById("aInput");
+const bSlider = document.getElementById("bSlider");
+const bVal = document.getElementById("bVal");
+const nSelect = document.getElementById("nSelect");
+const results = document.getElementById("results");
+const verticalCheck = document.getElementById("verticalCheck");
+const tpHorizontal = document.getElementById("tpHorizontal");
+const tpSky = document.getElementById("tpSky");
+const tpVoid = document.getElementById("tpVoid");
+
+let currentDistance = 0;
+
+function computeDistance(n,a,b){
+    return Math.pow(2,n-1)/(171.103*Math.pow(80,b)*a);
+}
+
+function generateCurve(n,a){
+    let data=[];
+    for(let b=-2;b<=1;b+=0.05){
+        data.push({x:b,y:computeDistance(n,a,b)});
+    }
+    return data;
+}
+
+const chart = new Chart(ctx,{
+    type:'line',
+    data:{
+        datasets:[
+            {label:"32-bit",borderColor:"red",fill:false,data:generateCurve(32,1)},
+            {label:"64-bit",borderColor:"green",fill:false,data:generateCurve(64,1)}
+        ]
+    },
+    options:{
+        scales:{
+            x:{type:'linear',title:{display:true,text:"b"}},
+            y:{type:'logarithmic',title:{display:true,text:"Distance"}}
+        }
+    }
+});
+
+function update(){
+    let a = parseFloat(aInput.value);
+    const b = parseInt(bSlider.value);
+    const n = parseInt(nSelect.value);
+
+    // Validate a
+    if(!a || a <= 0){
+        results.innerHTML = "<span class='warning'>Please enter a value greater than 0</span>";
+        return;
+    }
+
+    bVal.textContent = b;
+
+    const d = computeDistance(n,a,b);
+    const vertical = 2*d;
+    const t = 684.412*a;
+
+    currentDistance = Math.round(d);
+
+    results.innerHTML=`
+        Horizontal Distance: ${currentDistance.toLocaleString()} blocks<br>
+        Vertical (2d): ${Math.round(vertical).toLocaleString()}<br>
+        Terrain Scale (t): ${t.toFixed(3)}
+    `;
+
+    // Sky + Void detection
+    let skyCan = vertical < 253;
+    let voidCan = vertical < 64;
+
+    verticalCheck.innerHTML = `
+        Sky Farlands: ${skyCan ? "<span class='good'>CAN generate</span>" : "<span class='warning'>CANNOT generate</span>"}<br>
+        Void Farlands: ${voidCan ? "<span class='good'>CAN generate</span>" : "<span class='warning'>CANNOT generate</span>"}
+    `;
+
+    chart.data.datasets[0].data = generateCurve(32,a);
+    chart.data.datasets[1].data = generateCurve(64,a);
+    chart.update();
+}
+
+// Teleport generators
+function generateEdge(){
+    tpHorizontal.value = `/tp @p ${currentDistance} ~ ~`;
+}
+function generateCorner(){
+    tpHorizontal.value = `/tp @p ${currentDistance} ~ ${currentDistance}`;
+}
+function generateSky(){
+    let a = parseFloat(aInput.value);
+    const b = parseInt(bSlider.value);
+    const n = parseInt(nSelect.value);
+    const vertical = Math.round(2*computeDistance(n,a,b));
+
+    if(a <= 0){
+        tpSky.value = "Error: a must be > 0";
+        return;
+    }
+    if(vertical >= 253){
+        tpSky.value = "Cannot generate Sky Farlands: 2d ≥ 253";
+    } else {
+        tpSky.value = `/tp @p ~ ${vertical} ~`;
+    }
+}
+function generateVoid(){
+    let a = parseFloat(aInput.value);
+    const b = parseInt(bSlider.value);
+    const n = parseInt(nSelect.value);
+    const vertical = Math.round(2*computeDistance(n,a,b));
+
+    if(a <= 0){
+        tpVoid.value = "Error: a must be > 0";
+        return;
+    }
+    if(vertical >= 64){
+        tpVoid.value = "Cannot generate Void Farlands: 2d ≤ 64";
+    } else {
+        tpVoid.value = `/tp @p ~ ${vertical} ~`;
+    }
+}
+
+// Event listeners
+aInput.oninput = update;
+bSlider.oninput = update;
+nSelect.onchange = update;
+
+update();
+</script>
+
+</body>
+</html>
