@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <!--note that some of this code, like the math functions, were AI generated. The actual formulas and variables involved were calculated by me.-->
@@ -60,7 +61,7 @@ input.command{
 .good{color:#00e676;font-weight:bold;}
 a{color:#81d4fa;}
       
-.nav-link:hover {
+a:hover {
           color: #355e32;
           background-color: transparent;
           text-decoration: none;
@@ -81,7 +82,7 @@ a{color:#81d4fa;}
 <p><b>a > 0</b> (decimal allowed)<br>Lower a → farther generation<br>Higher a → closer generation</p>
 <p>t is the terrain coordinate scale (value to input ingame for horizontal/vertical t)</p>
 <div class="formula">t = 684.412a</div>
-<p>Higher t → jagged terrain<br>Lower t → flatter terrain</p>
+<p>Higher t value (squeezing noise map) → jagged terrain<br>Lower t value (stretching noise map) → flatter terrain</p>
 </div>
 
 <div class="section">
@@ -109,7 +110,7 @@ a{color:#81d4fa;}
 <div id="verticalCheck"></div>
 
 <div class="tp-box">
-<h3>Teleport Command Generator</h3>
+<h3>/Tp Generator</h3>
 
 <!-- Edge Farlands -->
 <p><b>Edge Farlands</b></p>
@@ -137,9 +138,9 @@ a{color:#81d4fa;}
 
 <style>
 .copy-btn {
-    background-color: #ff5252; /* red */
+    background-color: #ff5252;
     color: white;
-    font-size: 0.85em;         /* slightly smaller font */
+    font-size: 0.85em;
     padding: 6px 10px;
     border: none;
     border-radius: 5px;
@@ -157,7 +158,7 @@ function copyCommand(elementId){
     if(input.value){
         navigator.clipboard.writeText(input.value)
             .then(() => {
-                // Quick green border flash for feedback
+                // Border flash for feedback
                 input.style.border = "2px solid #00e676";
                 setTimeout(() => input.style.border = "", 500);
             })
@@ -247,7 +248,7 @@ function update(){
 
     results.innerHTML=`
         Horizontal Distance: ${currentDistance.toLocaleString()} blocks<br>
-        Vertical (2d): ${Math.round(vertical).toLocaleString()}<br>
+        Vertical Distance: ${Math.round(vertical).toLocaleString()} blocks<br>
         Terrain Scale (t): ${t.toFixed(3)}
     `;
 
@@ -316,6 +317,3 @@ update();
 </body>
 
 </html>
-
-
-
