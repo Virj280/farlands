@@ -185,12 +185,14 @@ const tValue = document.getElementById("tValue");
 let currentDistance = 0;
 
 function computeDistance(n,a,b){
-    return Math.pow(2,n-1)/(171.103*Math.pow(80,b)*a);
+    const numerator = BigInt(2) ** BigInt(n-1);
+    const denominator = 171.103 * Math.pow(80,b) * a;
+    return Number(numerator) / denominator;
 }
 
 function generateCurve(n,a){
     let data=[];
-    for(let b=-2;b<=1;b+=0.05){
+    for(let b=-1; b<=0; b+=0.01){
         data.push({x:b,y:computeDistance(n,a,b)});
     }
     return data;
@@ -217,7 +219,7 @@ function update(){
     const b = parseInt(bSlider.value);
     const n = parseInt(nSelect.value);
 
-    if(!a || a <= 0){
+    if (isNaN(a) || a <= 0){
         results.innerHTML = "<span class='warning'>Please enter a value greater than 0</span>";
         return;
     }
