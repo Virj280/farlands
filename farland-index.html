@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <!--note that some of this code, like the math functions, were AI generated. The actual formulas and variables involved were calculated by me.-->
@@ -7,8 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Farlands Calculator</title>
-    <link rel="icon" href="https://virj280.github.io/farlands/farland-favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://virj280.github.io/farlands/farland-favicon.ico" type="image/x-icon">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <style>
 body {
     font-family: Linescript;
@@ -17,10 +17,7 @@ body {
     margin:0;
     padding:30px;
 }
-.container {
-    max-width:1200px;
-    margin:auto;
-}
+.container { max-width:1200px; margin:auto; }
 h1,h2 { color:#4fc3f7; }
 .section {
     background:#1a1a1a;
@@ -34,9 +31,7 @@ h1,h2 { color:#4fc3f7; }
     font-family: monospace;
     border-radius:6px;
 }
-.controls {
-    margin-top:15px;
-}
+.controls { margin-top:15px; }
 input[type=range]{ width:60%; }
 input[type=number]{ width:100px; padding:5px; }
 select{ padding:5px; }
@@ -60,21 +55,37 @@ input.command{
 .warning{color:#ff5252;font-weight:bold;}
 .good{color:#00e676;font-weight:bold;}
 a{color:#81d4fa;}
-      
 a:hover {
-          color: #355e32;
-          background-color: transparent;
-          text-decoration: none;
+    color: #355e32;
+    background-color: transparent;
+    text-decoration: none;
 }
+.copy-btn {
+    background-color: #ff5252;
+    color: white;
+    font-size: 0.85em;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.copy-btn:hover { background-color: #ff3333; }
 </style>
 </head>
-<body>
 
+<body>
 <div class="container">
 
 <h1>Farlands Calculator & Formula Guide</h1>
-    <p>View the GitHub repo <a href="https://github.com/Virj280/farlands">here.</a><br>If you have any questions/concerns, please contact <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=masterofmaybe@gmail.com" target="_blank">masterofmaybe@gmail.com</a>.</p>
-    <p><a href="https://www.desmos.com/calculator/qvwnx0ph8f" target="_blank">Original Desmos graph</a></p>
+<p>View the GitHub repo <a href="https://github.com/Virj280/farlands">here.</a><br>
+If you have any questions/concerns, please contact 
+<a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=masterofmaybe@gmail.com" target="_blank">
+masterofmaybe@gmail.com</a>.</p>
+
+<p><a href="https://www.desmos.com/calculator/qvwnx0ph8f" target="_blank">
+Original Desmos graph</a></p>
+
 <div class="section">
 <h2>Main Formula</h2>
 <div class="formula">d = 2^(n-1) / (171.103 × 80^b × a)</div>
@@ -82,11 +93,12 @@ a:hover {
 <p><b>a > 0</b> (decimal allowed)<br>Lower a → farther generation<br>Higher a → closer generation</p>
 <p>t is the terrain coordinate scale (value to input ingame for horizontal/vertical t)</p>
 <div class="formula">t = 684.412a</div>
-<p>Higher t value (squeezing noise map) → jagged terrain<br>Lower t value (stretching noise map) → flatter terrain</p>
+<p>Higher t value → jagged terrain<br>Lower t value → flatter terrain</p>
 </div>
 
 <div class="section">
 <h2>Calculator</h2>
+
 <div class="controls">
 <label>a:</label>
 <input type="number" id="aInput" min="0.000000001" step="any" value="1">
@@ -109,10 +121,16 @@ a:hover {
 <div id="results"></div>
 <div id="verticalCheck"></div>
 
+<!-- Copyable Terrain Scale -->
+<div class="controls">
+<label>Terrain Scale (t):</label><br>
+<input class="command" id="tValue" readonly>
+<button class="copy-btn" onclick="copyCommand('tValue')">Copy</button>
+</div>
+
 <div class="tp-box">
 <h3>/Tp Generator</h3>
 
-<!-- Edge Farlands -->
 <p><b>Edge Farlands</b></p>
 <button class="edge" onclick="generateEdge()">Edge TP</button>
 <button class="corner" onclick="generateCorner()">Corner TP</button>
@@ -121,7 +139,6 @@ a:hover {
 
 <br><br>
 
-<!-- Sky Farlands -->
 <p><b>Sky Farlands</b></p>
 <button class="edge" onclick="generateSky()">Sky TP</button>
 <input class="command" id="tpSky" readonly>
@@ -129,53 +146,20 @@ a:hover {
 
 <br><br>
 
-<!-- Void Farlands -->
 <p><b>Void Farlands</b></p>
 <button class="edge" onclick="generateVoid()">Void TP</button>
 <input class="command" id="tpVoid" readonly>
 <button class="copy-btn" onclick="copyCommand('tpVoid')">Copy</button>
 </div>
 
-<style>
-.copy-btn {
-    background-color: #ff5252;
-    color: white;
-    font-size: 0.85em;
-    padding: 6px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 5px;
-}
-.copy-btn:hover {
-    background-color: #ff3333;
-}
-</style>
-
-<script>
-function copyCommand(elementId){
-    const input = document.getElementById(elementId);
-    if(input.value){
-        navigator.clipboard.writeText(input.value)
-            .then(() => {
-                // Border flash for feedback
-                input.style.border = "2px solid #00e676";
-                setTimeout(() => input.style.border = "", 500);
-            })
-            .catch(err => alert("Failed to copy: " + err));
-    } else {
-        alert("No command to copy.");
-    }
-}
-</script>
-
 <div class="section">
 <h2>Important Notes</h2>
 <p>Default Farlands (a=1, b=0, n=32): ≈ 12,550,824 blocks</p>
 <p>64-bit equivalent: ≈ 53.905 quadrillion blocks</p>
-<p>Because of extra zeros in the 64-bit value, 1–3 block variation becomes <b>1–3 billion block variation</b>.</p>
+<p>1–3 block variation becomes <b>1–3 billion block variation</b>.</p>
 <p>Noise maps break twice as far vertically: Vertical = 2d</p>
-<p>Sky Farlands require 2d < 253<br>Void Farlands require 2d > 64</p>
+<p>Sky Farlands require 2d < 253<br>
+Void Farlands require 2d > 64</p>
 </div>
 
 <div class="section">
@@ -196,6 +180,7 @@ const verticalCheck = document.getElementById("verticalCheck");
 const tpHorizontal = document.getElementById("tpHorizontal");
 const tpSky = document.getElementById("tpSky");
 const tpVoid = document.getElementById("tpVoid");
+const tValue = document.getElementById("tValue");
 
 let currentDistance = 0;
 
@@ -232,7 +217,6 @@ function update(){
     const b = parseInt(bSlider.value);
     const n = parseInt(nSelect.value);
 
-    // Validate a
     if(!a || a <= 0){
         results.innerHTML = "<span class='warning'>Please enter a value greater than 0</span>";
         return;
@@ -248,13 +232,14 @@ function update(){
 
     results.innerHTML=`
         Horizontal Distance: ${currentDistance.toLocaleString()} blocks<br>
-        Vertical Distance: ${Math.round(vertical).toLocaleString()} blocks<br>
-        Terrain Scale (t): ${t.toFixed(3)}
+        Vertical Distance: ${Math.round(vertical).toLocaleString()} blocks
     `;
 
-    // Sky + Void detection
+    tValue.value = t.toFixed(3);
+
+    // FIXED VOID LOGIC
     let skyCan = vertical < 253;
-    let voidCan = vertical < 64;
+    let voidCan = vertical > 64;
 
     verticalCheck.innerHTML = `
         Sky Farlands: ${skyCan ? "<span class='good'>CAN generate</span>" : "<span class='warning'>CANNOT generate</span>"}<br>
@@ -266,13 +251,14 @@ function update(){
     chart.update();
 }
 
-// Teleport generators
 function generateEdge(){
     tpHorizontal.value = `/tp @p ${currentDistance} ~ ~`;
 }
+
 function generateCorner(){
     tpHorizontal.value = `/tp @p ${currentDistance} ~ ${currentDistance}`;
 }
+
 function generateSky(){
     let a = parseFloat(aInput.value);
     const b = parseInt(bSlider.value);
@@ -289,6 +275,7 @@ function generateSky(){
         tpSky.value = `/tp @p ~ ${vertical} ~`;
     }
 }
+
 function generateVoid(){
     let a = parseFloat(aInput.value);
     const b = parseInt(bSlider.value);
@@ -299,14 +286,28 @@ function generateVoid(){
         tpVoid.value = "Error: a must be > 0";
         return;
     }
-    if(vertical >= 64){
+    // FIXED VOID CONDITION
+    if(vertical <= 64){
         tpVoid.value = "Cannot generate Void Farlands: 2d ≤ 64";
     } else {
         tpVoid.value = `/tp @p ~ ${vertical} ~`;
     }
 }
 
-// Event listeners
+function copyCommand(elementId){
+    const input = document.getElementById(elementId);
+    if(input.value){
+        navigator.clipboard.writeText(input.value)
+            .then(() => {
+                input.style.border = "2px solid #00e676";
+                setTimeout(() => input.style.border = "", 500);
+            })
+            .catch(err => alert("Failed to copy: " + err));
+    } else {
+        alert("No value to copy.");
+    }
+}
+
 aInput.oninput = update;
 bSlider.oninput = update;
 nSelect.onchange = update;
@@ -315,5 +316,4 @@ update();
 </script>
 
 </body>
-
 </html>
