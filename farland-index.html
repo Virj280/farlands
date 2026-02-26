@@ -269,8 +269,8 @@ function generateSky(){
         tpSky.value = "Error: a must be > 0";
         return;
     }
-    if(vertical >= 253){
-        tpSky.value = "Cannot generate Sky Farlands: 2d ≥ 253";
+    if(vertical <= 253){
+        tpSky.value = "Cannot generate Sky Farlands: 2d ≤ 253";
     } else {
         tpSky.value = `/tp @p ~ ${vertical} ~`;
     }
