@@ -11,7 +11,7 @@
 
 <style>
 body {
-    font-family: Linescript;
+    font-family:Linescript;
     background:#0f0f0f;
     color:#f0f0f0;
     margin:0;
@@ -31,12 +31,14 @@ h1,h2 { color:#4fc3f7; }
     font-family: monospace;
     border-radius:6px;
 }
-.controls { margin-top:15px; }
-input[type=range]{ width:60%; }
-input[type=number]{ width:100px; padding:5px; }
-select{ padding:5px; }
-canvas { background:white; border-radius:8px; }
+
+.controls { margin-top:15px; font-family:Linescript; }
+.input[type=range]{ width:60%; }
+.input[type=number]{ width:100px; padding:5px; }
+.select{ padding:5px; }
+.canvas { background:white; border-radius:8px; }
 .tp-box { margin-top:15px; }
+
 button{
     padding:8px 12px;
     margin:5px;
@@ -53,6 +55,7 @@ input.command{
     padding:8px;
     border-radius:6px;
     border:none;
+    font-family:Linescript;
 }
 .warning{color:#ff5252;font-weight:bold;}
 .good{color:#00e676;font-weight:bold;}
@@ -75,6 +78,8 @@ a:hover {
 }
 .copy-btn:hover { background-color: #bbff00; }
 .button:hover { background-color: #bbff00; }
+.edge:hover { background-color: #bbff00; }
+.corner:hover { background-color: #bbff00; }
 </style>
 </head>
 
@@ -104,20 +109,20 @@ Original Desmos graph</a></p>
 <h2>Calculator</h2>
 
 <div class="controls">
-<label>a:</label>
-<input type="number" id="aInput" min="0.000000001" step="any" value="1">
+<label>a (noise scale modifier):</label>
+<input type="number" id="aInput" min="0.000000001" step="any" value="1" class="controls">
 </div>
 
 <div class="controls">
-<label>b:</label>
+<label>b (Farlands tier):</label>
 <input type="range" id="bSlider" min="-1" max="0" step="1" value="0">
 <span id="bVal">0</span>
 </div>
 
 <div class="controls">
 <label>n:</label>
-<select id="nSelect">
-<option value="32" selected>32-bit (old/modded)</option>
+<select id="nSelect" class="controls">
+<option value="32">32-bit (old/modded)</option>
 <option value="64">64-bit (modern)</option>
 </select>
 </div>
@@ -188,10 +193,16 @@ const tValue = document.getElementById("tValue");
 
 let currentDistance = 0;
 
-function computeDistance(n,a,b){
-    const numerator = BigInt(2) ** BigInt(n-1);
-    const denominator = 171.103 * Math.pow(80,b) * a;
-    return Number(numerator) / denominator;
+function computeDistance(n, a, b) {
+    const numerator = BigInt(2) ** BigInt(n - 1);
+    const denominator = 171.103 * Math.pow(80, b) * a;
+    const numStr = numerator.toString();
+    const exponent = numStr.length - 1;
+    const mantissa = Number(numStr[0] + "." + numStr.slice(1, 16));
+
+    const scientificValue = mantissa * Math.pow(10, exponent);
+
+    return scientificValue / denominator;
 }
 
 function generateCurve(n,a){
@@ -322,8 +333,3 @@ update();
 
 </body>
 </html>
-
-
-
-
-
