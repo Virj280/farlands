@@ -195,11 +195,11 @@ const tValue = document.getElementById("tValue");
 let currentDistance = 0;
 
 function computeDistance(n, a, b) {
-    const numerator = BigInt(2) ** BigInt(n - 1);
-    const denominator = 171.103 * Math.pow(80, b) * a;
-    const numStr = numerator.toString();
-    const exponent = numStr.length - 1;
-    const mantissa = Number(numStr[0] + "." + numStr.slice(1, 16));
+    const logNumerator = (n - 1) * Math.log10(2);
+    const logDenominator = Math.log10(171.103) + b * Math.log10(80) + Math.log10(a);
+    const logResult = logNumerator - logDenominator;
+    return Math.pow(10, logResult);
+}
 
     const scientificValue = mantissa * Math.pow(10, exponent);
 
@@ -334,5 +334,6 @@ update();
 
 </body>
 </html>
+
 
 
