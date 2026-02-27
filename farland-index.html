@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!--note that some of this code, like the math functions, were AI generated. The actual formulas and variables involved were calculated by me.-->
+<!-- note that some of this code, like the math functions, were AI generated. The actual formulas and variables involved were calculated by me. -->
 <html lang="en">
 <link rel="stylesheet" href="https://virj280.github.io/the-puchi-invasion/Linescript%20webfont%20kit/stylesheet.css" type="text/css" charset="utf-8" />
 <head>
@@ -43,6 +43,8 @@ button{
     border:none;
     border-radius:6px;
     cursor:pointer;
+    font-family:Linescript;
+    
 }
 .edge{background:#2b8cff;color:white;}
 .corner{background:#00b894;color:white;}
@@ -69,8 +71,10 @@ a:hover {
     border-radius: 5px;
     cursor: pointer;
     margin-left: 5px;
+    font-family:Linescript;
 }
-.copy-btn:hover { background-color: #ff3333; }
+.copy-btn:hover { background-color: #bbff00; }
+.button:hover { background-color: #bbff00; }
 </style>
 </head>
 
@@ -121,7 +125,7 @@ Original Desmos graph</a></p>
 <div id="results"></div>
 <div id="verticalCheck"></div>
 
-<!-- Copyable Terrain Scale -->
+<!-- Terrain Scale -->
 <div class="controls">
 <label>Terrain Scale (t):</label><br>
 <input class="command" id="tValue" readonly>
@@ -318,6 +322,7 @@ update();
 
 </body>
 </html>
+
 
 
 
