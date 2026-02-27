@@ -201,11 +201,6 @@ function computeDistance(n, a, b) {
     return Math.pow(10, logResult);
 }
 
-    const scientificValue = mantissa * Math.pow(10, exponent);
-
-    return scientificValue / denominator;
-}
-
 function generateCurve(n,a){
     let data=[];
     for(let b=-1; b<=0; b+=0.01){
@@ -334,6 +329,7 @@ update();
 
 </body>
 </html>
+
 
 
 
