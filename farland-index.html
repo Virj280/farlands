@@ -90,7 +90,6 @@ Like a record, baby, right round, round, round
 
 Please laugh bro I need this -->
 
-
 <style>
 body {
     font-family:Linescript;
@@ -170,8 +169,7 @@ a:hover {
 If you have any questions/concerns, please contact 
 <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=masterofmaybe@gmail.com">
 masterofmaybe@gmail.com</a>.</p>
-<p><a href="https://www.desmos.com/calculator/qvwnx0ph8f">
-Original Desmos graph</a></p>
+<p><a href="https://www.desmos.com/calculator/qvwnx0ph8f">Original Desmos graph</a></p>
 <p>Required mods (if you want to use 32-bit distances): <a href="https://modrinth.com/mod/architectury-api">Architectury</a>, <a href="https://modrinth.com/mod/fabric-api">Fabric api</a> (all mods here use fabric), <a href="https://modrinth.com/mod/border-remover/versions">Border Remover</a>, and <a href="https://modrinth.com/mod/cloth-config">Cloth Config</a>.</p>
 
 <div class="section">
@@ -188,18 +186,20 @@ Original Desmos graph</a></p>
 <h2>Calculator</h2>
 
 <div class="controls">
-<label>a (noise scale modifier):</label>
+<label>Noise Scale Modifier (a):</label>
 <input type="number" id="aInput" min="0.000000001" step="any" value="1" class="controls">
 </div>
 
 <div class="controls">
-<label>b (Farlands tier):</label>
-<input type="range" id="bSlider" min="-1" max="0" step="1" value="0">
-<span id="bVal">0</span>
+<label>Farlands Type (b):</label>
+<select id="bSelect" class="controls">
+    <option value="0">Farlands</option>
+    <option value="-1">Farther Lands</option>
+</select>
 </div>
 
 <div class="controls">
-<label>n:</label>
+<label>World Type/Bit Depth (n):</label>
 <select id="nSelect" class="controls">
 <option value="32">32-bit (old/modded)</option>
 <option value="64">64-bit (modern)</option>
@@ -260,8 +260,7 @@ Void Farlands require v < 64</p>
 <script>
 const ctx = document.getElementById("graph").getContext("2d");
 const aInput = document.getElementById("aInput");
-const bSlider = document.getElementById("bSlider");
-const bVal = document.getElementById("bVal");
+const bSelect = document.getElementById("bSelect");
 const nSelect = document.getElementById("nSelect");
 const results = document.getElementById("results");
 const verticalCheck = document.getElementById("verticalCheck");
@@ -271,6 +270,13 @@ const tpVoid = document.getElementById("tpVoid");
 const tValue = document.getElementById("tValue");
 
 let currentDistance = 0;
+/* I promise these don't do anything */
+let triggered69 = false;
+let triggered420 = false;
+let triggered67 = false;
+let triggered32bit = false;
+let triggered64bit = false;
+let triggeredBigNum = false;
 
 function computeDistance(n, a, b) {
     const logNumerator = (n - 1) * Math.log10(2);
@@ -306,7 +312,7 @@ const chart = new Chart(ctx,{
 
 function update(){
     let a = parseFloat(aInput.value);
-    const b = parseInt(bSlider.value);
+    const b = parseInt(bSelect.value);
     const n = parseInt(nSelect.value);
 
     if (isNaN(a) || a <= 0){
@@ -314,7 +320,47 @@ function update(){
         return;
     }
 
-    bVal.textContent = b;
+    /* don't worry about these they're totally not important */
+    if(Math.abs(a - 69) < 0.0001) {
+        if(!triggered69){
+            alert("Nice.");
+            triggered69 = true;
+        }
+    }
+
+    if(Math.abs(a - 420) < 0.0001) {
+        if(!triggered420){
+            alert("Wow I wonder what that one means");
+            triggered420 = true;
+        }
+    }
+
+    if(Math.abs(a - 67) < 0.0001) {
+        if(!triggered67){
+            alert("Bro you cannot be fr");
+            triggered67 = true;
+        }
+    }
+
+    if(aInput.value === "12550824") {
+        if(!triggered32bit){
+            alert("You're not slick");
+            triggered32bit = true;
+        }
+    }
+    if(aInput.value === "53905378846979650") {
+        if(!triggered64bit){
+            alert("You're still not slick bro");
+            triggered64bit = true;
+        }
+    }
+
+    if(a > 1.5e7){
+        if(!triggeredBigNum){
+            alert("Wow that's a big number");
+            triggeredBigNum = true;
+        }
+    }
 
     const d = computeDistance(n,a,b);
     const vertical = 2*d;
@@ -352,7 +398,7 @@ function generateCorner(){
 
 function generateSky(){
     let a = parseFloat(aInput.value);
-    const b = parseInt(bSlider.value);
+    const b = parseInt(bSelect.value);
     const n = parseInt(nSelect.value);
     const vertical = Math.round(2*computeDistance(n,a,b));
 
@@ -369,7 +415,7 @@ function generateSky(){
 
 function generateVoid(){
     let a = parseFloat(aInput.value);
-    const b = parseInt(bSlider.value);
+    const b = parseInt(bSelect.value);
     const n = parseInt(nSelect.value);
     const vertical = Math.round(2*computeDistance(n,a,b));
 
@@ -400,7 +446,7 @@ function copyCommand(elementId){
 }
 
 aInput.oninput = update;
-bSlider.oninput = update;
+bSelect.onchange = update;
 nSelect.onchange = update;
 
 update();
@@ -408,18 +454,3 @@ update();
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
