@@ -356,7 +356,7 @@ function generateSky(){
     const n = parseInt(nSelect.value);
     const vertical = Math.round(2*computeDistance(n,a,b));
 
-    if(a <= 0){
+    if (isNaN(a) || a <= 0){
         tpSky.value = "Error: a must be > 0";
         return;
     }
@@ -373,7 +373,7 @@ function generateVoid(){
     const n = parseInt(nSelect.value);
     const vertical = Math.round(2*computeDistance(n,a,b));
 
-    if(a <= 0){
+    if (isNaN(a) || a <= 0){
         tpVoid.value = "Error: a must be > 0";
         return;
     }
@@ -408,6 +408,7 @@ update();
 
 </body>
 </html>
+
 
 
 
