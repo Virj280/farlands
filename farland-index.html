@@ -277,6 +277,7 @@ let triggered67 = false;
 let triggered32bit = false;
 let triggered64bit = false;
 let triggeredBigNum = false;
+let triggeredClose = false;
 
 function computeDistance(n, a, b) {
     const logNumerator = (n - 1) * Math.log10(2);
@@ -361,6 +362,13 @@ function update(){
             triggeredBigNum = true;
         }
     }
+
+    if (currentDistance < 300) {
+        if (!triggeredClose) {
+            alert("Wow you really just made the Closelands (hahaha that was so funny)\nGET OUT");
+            triggeredClose = true;
+    }
+}
 
     const d = computeDistance(n,a,b);
     const vertical = 2*d;
@@ -454,4 +462,5 @@ update();
 
 </body>
 </html>
+
 
