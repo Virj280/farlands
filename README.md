@@ -5,3 +5,5 @@ if you really want to know more then just go to the website I'm not explaining e
 My sh*tty notes are here: https://virj280.github.io/farlands/Farlands%20math.txt
 (by the way the text file is formatted so poorly that you have to zoom out to view the entire thing
 no I'm not going to fix it)
+
+Also there's a bunch of screenshots of me going through the farlands to make sure my math actually functions and I have basic cognitive capabilities
