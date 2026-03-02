@@ -1,9 +1,11 @@
-Ok so basically this is a calculator I wrote in 4 hours when I was sleep deprived and it just tells you where the farlands spawn based off certain values
+Ok so basically this is a calculator that I initially wrote in 4 hours when I was sleep deprived
 
-if you really want to know more then just go to the website I'm not explaining everything in a literal markdown file
+It just tells you where the farlands spawn based off certain values
 
-My sh*tty notes are here: https://virj280.github.io/farlands/Farlands%20math.txt
+If you really want to know more then just go to the website I'm not explaining everything in a literal markdown file
+
+My raw notes are here (this is the content that I later put into the website): https://virj280.github.io/farlands/Farlands%20math.txt
 (by the way the text file is formatted so poorly that you have to zoom out to view the entire thing
 no I'm not going to fix it)
 
-Also there's a bunch of screenshots of me going through the farlands to make sure my math actually functions and I have basic cognitive capabilities
+Also there's a bunch of screenshots of me going through the farlands to make sure my math actually functions
