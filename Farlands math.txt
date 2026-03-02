@@ -1,0 +1,31 @@
+Link to graph (shows an exponential function representing where the type of farlands spawn based off of the value of a and b): https://www.desmos.com/calculator/qvwnx0ph8f
+
+d=2^{n-1}/(171.103*80^{b}a)
+
+b≤0, MUST be an integer.
+
+b calculates the distance of the given type of farlands (i.e. b=0 calculates farlands, b=-1 calculates farther lands, b=-2 calculates farthest lands.)
+
+a>0, but does not have to be an integer. a represents the amount the distance is being brought closer by (i.e. if a=2, the distance is twice as close).
+
+By setting a to 1 you will get the default distance of the farlands from spawn, or ~12.55 million blocks.
+
+To get the terrain coordinate scale to enter in-game, use t=684.412a. After setting this value, you can tp to the value of ±d to see where the desired set of farlands begin.
+
+The lower the value of a, the farther the farlands generate from spawn and vice versa.
+
+Note that the larger the value of t, the terrain of your world will be more jagged and spiked because you are squeezing the noise maps. The smaller the value of t, your world becomes flatter because the noise maps are being stretched.
+
+d=distance from (0, y, 0), which is about 12550824.05 in a vanilla world (this value will be the long equivalent, or about 5.39053788*10^16, in an unmodified world. Fully written out, this value is about 53,905,378,846,979,747.91792, or 53.905 quadrillion, so it's pretty far from spawn).
+
+Since the farlands sometimes generate 1-3 blocks closer than 12550824 due to noise map variation, this range is converted to 1-3 BILLION blocks due to the long value being used instead of the int value. If your world is unmodded, keep this in mind.
+
+The reason behind this is quite simple. If you take the value 53.905 quadrillion, and only look at the first 7 zeros (or 53,905,378), since the farlands generate 12.55 million blocks in older versions, and 16-7=9, you end up with 9 extra zeros. Because of this, you end up with a variation of 1-3 billion blocks. However, note that any amount in between these numbers can be the variation (i.e. 1.1e9, 2.347e9, etc.).
+
+n=the given value of your game (unmodified, the game generates 2^31 blocks in each direction, but the farlands default break at the long equivalent of this number, or 2^63. If you mod the game to readd the farlands, set n to 32, otherwise set n to 64. In older versions, the farlands use the int/32-bit value.)
+
+n will always be 64 unless you apply a mod to readd the farlands, in which case it will be 32 since the farlands currently generate at the long equivalent of the 32 bit point where high & low noise maps break.
+
+The noise maps break twice as far vertically as they do horizontally, meaning that the value of d and t should be doubled to get the vertical equivalent (i.e. since the edge farlands default generate at about 12550824.05 blocks from spawn in any direction, the sky/void farlands would generate at about 25101648.11 from spawn up and down).
+
+Because Minecraft only generates terrain below y=253 and above y=-64, the value of 2d must be less than 253 for the sky farlands to generate, and less than 64 for the sky and void farlands to generate.
