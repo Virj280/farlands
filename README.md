@@ -2,4 +2,6 @@ Ok so basically this is a calculator I wrote in 4 hours when I was sleep deprive
 
 if you really want to know more then just go to the website I'm not explaining everything in a literal markdown file (seriously why does github use .md files instead of .txt files I don't get it)
 
-My sh*tty notes are here:
+My sh*tty notes are here: https://virj280.github.io/farlands/Farlands%20math.txt
+(by the way the text file is formatted so poorly that you have to zoom out to view the entire thing
+no I'm not going to fix it)
