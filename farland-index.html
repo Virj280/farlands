@@ -280,6 +280,7 @@ function computeDistance(n, a, b) {
 }
 
 function generateCurve(n,a){
+    console.log("You spin me right round baby right round");
     let data=[];
     for(let b=-1; b<=0; b+=0.01){
         data.push({x:b,y:computeDistance(n,a,b)});
@@ -304,7 +305,6 @@ const chart = new Chart(ctx,{
 });
 
 function update(){
-    console.log("You spin me right round baby right round");
     let a = parseFloat(aInput.value);
     const b = parseInt(bSlider.value);
     const n = parseInt(nSelect.value);
@@ -408,6 +408,7 @@ update();
 
 </body>
 </html>
+
 
 
 
