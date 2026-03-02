@@ -1,6 +1,6 @@
 Ok so basically this is a calculator I wrote in 4 hours when I was sleep deprived and it just tells you where the farlands spawn based off certain values
 
-if you really want to know more then just go to the website I'm not explaining everything in a literal markdown file (seriously why does github use .md files instead of .txt files I don't get it)
+if you really want to know more then just go to the website I'm not explaining everything in a literal markdown file
 
 My sh*tty notes are here: https://virj280.github.io/farlands/Farlands%20math.txt
 (by the way the text file is formatted so poorly that you have to zoom out to view the entire thing
