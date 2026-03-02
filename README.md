@@ -11,3 +11,5 @@ no I'm not going to fix it)
 By the way I stole the font from another website I made cause I don't feel like making a new one
 
 Also there's a bunch of screenshots of me going through the farlands to make sure my math actually functions
+
+They're located here: https://drive.google.com/file/d/1KefZslhIhRSKHm0Z_zd-pvSXy-NedrFD/view?usp=sharing
