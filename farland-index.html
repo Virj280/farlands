@@ -271,6 +271,17 @@ const tValue = document.getElementById("tValue");
 
 let currentDistance = 0;
 
+// You shouldn't need this one... if you're normal
+if (localStorage.getItem("banned67") === "true") {
+    aInput.addEventListener("input", () => {
+        if (Math.abs(parseFloat(aInput.value) - 67) < 0.1) {
+            aInput.value = "66.5";
+            alert("No.");
+            console.log("Never again. This world must be kept safe from your hands.");
+        }
+    });
+}
+
 /* I promise these don't do anything */
 let triggered69 = false;
 let triggered420 = false;
@@ -372,6 +383,8 @@ function update(){
             alert("Don't think you can get out of this.");
             alert("You might have won the battle...");
             alert("But you have not won the war.");
+            /* Never again. */
+            localStorage.setItem("banned67", "true");
             document.body.innerHTML = "<p><b>You know what you did.</b><br><br>Goodbye.</p>";
             console.log("Your actions here will not be forgotten today.");
     }
@@ -497,6 +510,7 @@ update();
 
 </body>
 </html>
+
 
 
 
