@@ -398,7 +398,7 @@ function update(){
     const vertical = 2*d;
     const t = 684.412*a;
 
-    currentDistance = Math.round(d);
+    currentDistance = d.toExponential(6);
 
     results.innerHTML=`
         Horizontal Distance: ${currentDistance.toLocaleString()} blocks<br>
@@ -486,3 +486,4 @@ update();
 
 </body>
 </html>
+
