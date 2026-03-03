@@ -273,11 +273,9 @@ let currentDistance = 0;
 /* I promise these don't do anything */
 let triggered69 = false;
 let triggered420 = false;
-let triggered67 = false;
 let triggered32bit = false;
 let triggered64bit = false;
 let triggeredBigNum = false;
-let triggeredClose = false;
 
 function computeDistance(n, a, b) {
     const logNumerator = (n - 1) * Math.log10(2);
@@ -322,25 +320,33 @@ function update(){
     }
 
     /* don't worry about these they're totally not important */
-    if(Math.abs(a - 69) < 0.0001) {
+    if(Math.abs(a - 69) < 0.1) {
         if(!triggered69){
             alert("Nice.");
             triggered69 = true;
         }
     }
 
-    if(Math.abs(a - 420) < 0.0001) {
+    if(Math.abs(a - 420) < 0.1) {
         if(!triggered420){
-            alert("Wow I wonder what that one means");
+            alert("Wow I wonder what that means");
             triggered420 = true;
         }
     }
 
-    if(Math.abs(a - 67) < 0.0001) {
-        if(!triggered67){
-            alert("No");
-            triggered67 = true;
-        }
+    if(Math.abs(a - 67) < 0.1) {
+            alert("Wow.");
+            alert("You must think you're funny, huh?");
+            alert("Typing '67' like that...");
+            alert("You're trying too hard.");
+            alert("And you know what?");
+            alert("I know your type.");
+            alert("You're just going to type 67 again when I'm done.");
+            alert("But I'm never done.");
+            alert("Don't think you can get out of this.");
+            alert("You might have won the battle...");
+            alert("But you have not won the war.");
+            document.body.innerHTML = "<p>Your actions today will not be forgotten.<br><br>Goodbye.</p>";
     }
 
     if(aInput.value === "12550824") {
@@ -358,17 +364,10 @@ function update(){
 
     if(a > 1e5){
         if(!triggeredBigNum){
-            alert("Wow that's a big number");
+            alert("I guess you really just made the Closelands (that was so funny)");
             triggeredBigNum = true;
         }
     }
-
-    if (currentDistance < 300) {
-        if (!triggeredClose) {
-            alert("Wow you really just made the Closelands (hahaha that was so funny)\nGET OUT");
-            triggeredClose = true;
-    }
-}
 
     const d = computeDistance(n,a,b);
     const vertical = 2*d;
@@ -462,5 +461,6 @@ update();
 
 </body>
 </html>
+
 
 
