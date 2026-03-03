@@ -13,3 +13,11 @@ By the way I stole the font from another website I made cause I don't feel like 
 Also there's a bunch of screenshots of me going through the farlands to make sure my math actually functions
 
 They're located here: https://drive.google.com/file/d/1KefZslhIhRSKHm0Z_zd-pvSXy-NedrFD/view?usp=sharing
+
+
+
+
+
+
+
+(Oh and don't worry there's totally no hidden easter eggs in this website or anything)
