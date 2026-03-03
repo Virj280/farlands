@@ -280,6 +280,7 @@ let triggered41 = false;
 let triggered32bit = false;
 let triggered64bit = false;
 let triggeredBigNum = false;
+let triggeredSmallNum = false;
 
 function computeDistance(n, a, b) {
     const logNumerator = (n - 1) * Math.log10(2);
@@ -390,8 +391,17 @@ function update(){
 
     if(a > 1e5){
         if(!triggeredBigNum){
-            alert("I guess you really just made the Closelands (that was so funny)");
+            alert("I guess you really just made the Closelands");
+            alert("(that was so funny)");
             triggeredBigNum = true;
+        }
+    }
+
+    if(a < 1){
+        if(!triggeredSmallNum){
+            alert("Why are you trying to move them farther away?");
+            alert("No seriously I don't get it");
+            triggeredSmallNum = true;
         }
     }
 
@@ -487,6 +497,7 @@ update();
 
 </body>
 </html>
+
 
 
 
