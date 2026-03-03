@@ -270,9 +270,13 @@ const tpVoid = document.getElementById("tpVoid");
 const tValue = document.getElementById("tValue");
 
 let currentDistance = 0;
+
 /* I promise these don't do anything */
 let triggered69 = false;
 let triggered420 = false;
+/* there's no flag for 67, totally no reason for that */
+let triggered8008 = false;
+let triggered41 = false;
 let triggered32bit = false;
 let triggered64bit = false;
 let triggeredBigNum = false;
@@ -319,7 +323,7 @@ function update(){
         return;
     }
 
-    /* don't worry about these they're totally not important */
+    /* don't worry about these they're definitely not important */
     if(Math.abs(a - 69) < 0.1) {
         if(!triggered69){
             alert("Nice.");
@@ -331,6 +335,21 @@ function update(){
         if(!triggered420){
             alert("Wow I wonder what that means");
             triggered420 = true;
+        }
+    }
+
+    if(Math.abs(a - 8008) < 0.1) {
+        if(!triggered8008){
+            alert("Bro");
+            alert("GET OUT");
+            triggered8008 = true;
+        }
+    }
+
+    if(Math.abs(a - 41) < 0.1) {
+        if(!triggered41){
+            alert("41 but I got 41 goons\n\n(you don't deserve life)");
+            triggered41 = true;
         }
     }
 
@@ -467,4 +486,3 @@ update();
 
 </body>
 </html>
-
