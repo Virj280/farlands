@@ -285,13 +285,14 @@ if (localStorage.getItem("banned67") === "true") {
 /* I promise these don't do anything */
 let triggered69 = false;
 let triggered420 = false;
-/* there's no flag for 67, totally no reason for that */
+// let triggered67 = false; -- don't worry about this one
 let triggered8008 = false;
 let triggered41 = false;
 let triggered32bit = false;
 let triggered64bit = false;
 let triggeredBigNum = false;
 let triggeredSmallNum = false;
+let triggeredSpinValue = false;
 
 function computeDistance(n, a, b) {
     const logNumerator = (n - 1) * Math.log10(2);
@@ -419,6 +420,14 @@ function update(){
         }
     }
 
+    if(Math.abs(a - 1985) < 0.1){
+        if(!triggeredSpinValue){
+            alert("Wow that's the number that spins you right round");
+            alert("(please laugh I need this)");
+            triggeredSpinValue = true;
+        }
+    }
+
     const d = computeDistance(n,a,b);
     const vertical = 2*d;
     const t = 684.412*a;
@@ -511,6 +520,7 @@ update();
 
 </body>
 </html>
+
 
 
 
